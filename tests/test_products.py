@@ -1,7 +1,3 @@
-"""
-Tests for Product Statistics Service.
-Covers: parsing/normalization, average price calculation, and endpoint filtering.
-"""
 from decimal import Decimal
 from io import StringIO
 
@@ -12,9 +8,6 @@ from rest_framework.test import APIClient
 
 from products.services.importer import ProductImporter, calculate_avg_price_by_category
 
-# =============================================================================
-# TEST 1: Parsing and Normalization of Input Data
-# =============================================================================
 
 class TestDataParsingAndNormalization:
     """Tests for CSV parsing and column normalization."""
@@ -91,10 +84,6 @@ NaN Price,Electronics,invalid,2024-01-15T10:30:00Z"""
         assert id2 != id3
 
 
-# =============================================================================
-# TEST 2: Correct Average Price Calculation
-# =============================================================================
-
 class TestAveragePriceCalculation:
     """Tests for Pandas-based average price calculation."""
 
@@ -152,10 +141,6 @@ class TestAveragePriceCalculation:
         assert result.iloc[0]['category'] == 'TestCategory'
         assert result.iloc[0]['avg_price'] == pytest.approx(150.00, rel=0.01)
 
-
-# =============================================================================
-# TEST 3: Endpoint Filtering
-# =============================================================================
 
 @pytest.mark.django_db
 class TestEndpointFiltering:
@@ -267,10 +252,6 @@ class TestEndpointFiltering:
         assert response.status_code == 200
         assert response.data['status'] == 'healthy'
 
-
-# =============================================================================
-# Additional Tests for Idempotent Import
-# =============================================================================
 
 @pytest.mark.django_db
 class TestIdempotentImport:

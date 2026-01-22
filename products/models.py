@@ -1,6 +1,3 @@
-"""
-Product models for the statistics service.
-"""
 from django.db import models
 
 

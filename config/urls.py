@@ -1,6 +1,3 @@
-"""
-URL configuration for Product Statistics Service.
-"""
 from django.urls import include, path
 
 urlpatterns = [

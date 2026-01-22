@@ -1,6 +1,3 @@
-"""
-Management command to manually trigger product import.
-"""
 from django.core.management.base import BaseCommand, CommandError
 
 from products.services.importer import ProductImporter, ProductImportError

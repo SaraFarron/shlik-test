@@ -1,6 +1,3 @@
-"""
-Celery tasks for product import.
-"""
 import logging
 
 from celery import shared_task
@@ -18,7 +15,7 @@ logger = logging.getLogger('products')
     retry_kwargs={'max_retries': 3},
     name='products.tasks.import_products_task'
 )
-def import_products_task(self, source_url: str = None):
+def import_products_task(self, source_url: str | None = None):
     """
     Celery task to import products from CSV source.
     Includes retry logic and cache invalidation.

@@ -1,13 +1,8 @@
-"""
-Product import service using Pandas for data processing.
-Handles CSV import from URL or local fallback with idempotent operations.
-"""
 import hashlib
 import logging
 from datetime import timezone as dt_timezone
 from decimal import Decimal
 from io import StringIO
-from typing import Optional
 
 import pandas as pd
 import requests
@@ -50,7 +45,7 @@ class ProductImporter:
     
     REQUIRED_COLUMNS = {'name', 'category', 'price', 'updated_at'}
 
-    def __init__(self, source_url: Optional[str] = None):
+    def __init__(self, source_url: str | None = None):
         """
         Initialize importer with optional source URL.
         Falls back to local file if URL is not provided or fails.

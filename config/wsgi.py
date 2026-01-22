@@ -1,6 +1,3 @@
-"""
-WSGI config for Product Statistics Service.
-"""
 import os
 
 from django.core.wsgi import get_wsgi_application

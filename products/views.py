@@ -1,6 +1,3 @@
-"""
-API Views for Product Statistics Service.
-"""
 import logging
 from decimal import Decimal
 
