@@ -21,7 +21,7 @@ API будет доступно по `http://localhost:8000/api/`
 После запуска сервиса, можно импортировать тестовые данные:
 
 ```bash
-# Синхронно
+# Синхронно, из data/sample_products.csv
 docker compose exec web python manage.py import_products
 
 # Асинхронно
@@ -141,5 +141,34 @@ Cutting Board,Kitchen,24.99,2024-01-16T10:05:00Z
 ### Логи импорта
 
 ```
+[2026-01-22 08:40:00,002: INFO/MainProcess] Task products.tasks.import_products_task[713f053b-bdef-4e16-bc47-12d0c21d9246] received
+INFO 2026-01-22 08:40:00,003 tasks Starting import task (attempt 1)
+[2026-01-22 08:40:00,003: INFO/ForkPoolWorker-16] Starting import task (attempt 1)
+INFO 2026-01-22 08:40:00,010 importer Starting product import...
+[2026-01-22 08:40:00,010: INFO/ForkPoolWorker-16] Starting product import...
+INFO 2026-01-22 08:40:00,010 importer Using local fallback: /app/data/sample_products.csv
+[2026-01-22 08:40:00,010: INFO/ForkPoolWorker-16] Using local fallback: /app/data/sample_products.csv
+INFO 2026-01-22 08:40:00,012 importer Fetched 21 rows from source
+[2026-01-22 08:40:00,012: INFO/ForkPoolWorker-16] Fetched 21 rows from source
+INFO 2026-01-22 08:40:00,017 importer After cleaning: 18 valid rows
+[2026-01-22 08:40:00,017: INFO/ForkPoolWorker-16] After cleaning: 18 valid rows
+INFO 2026-01-22 08:40:00,031 importer Created 8 new products
+[2026-01-22 08:40:00,031: INFO/ForkPoolWorker-16] Created 8 new products
+INFO 2026-01-22 08:40:00,037 importer Updated 10 existing products
+[2026-01-22 08:40:00,037: INFO/ForkPoolWorker-16] Updated 10 existing products
+INFO 2026-01-22 08:40:00,037 importer Import completed: {'created': 8, 'updated': 10, 'skipped': 0, 'errors': 0, 'total_processed': 18}
+[2026-01-22 08:40:00,037: INFO/ForkPoolWorker-16] Import completed: {'created': 8, 'updated': 10, 'skipped': 0, 'errors': 0, 'total_processed': 18}
+INFO 2026-01-22 08:40:00,039 tasks Cache invalidated after import
+[2026-01-22 08:40:00,039: INFO/ForkPoolWorker-16] Cache invalidated after import
+[2026-01-22 08:40:00,040: INFO/ForkPoolWorker-16] Task products.tasks.import_products_task[713f053b-bdef-4e16-bc47-12d0c21d9246] succeeded in 0.037440037936903536s: {'created': 8, 'updated': 10, 'skipped': 0, 'errors': 0, 'total_processed': 18}
+```
 
+```
+Starting synchronous import...
+INFO 2026-01-22 08:53:10,350 importer Starting product import...
+INFO 2026-01-22 08:53:10,351 importer Fetching data from URL: https://pastebin.com/raw/URQvBWRf
+INFO 2026-01-22 08:53:11,424 importer Fetched 26 rows from source
+INFO 2026-01-22 08:53:11,433 importer After cleaning: 22 valid rows
+INFO 2026-01-22 08:53:11,451 importer Created 22 new products
+INFO 2026-01-22 08:53:11,451 importer Import completed: {'created': 22, 'updated': 0, 'skipped': 0, 'errors': 0, 'total_processed': 22}
 ```
